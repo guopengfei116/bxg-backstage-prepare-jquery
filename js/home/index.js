@@ -7,7 +7,8 @@
  * 然后index.js存在很多依赖，这些依赖项同时异步加载，他们的执行顺序是不确定的，
  * 那么现在有一个aside模块，它依赖与jquery与jquery_cookie，所以需要在aside模块编写时进行配置
  * */
-define(['bootstrap', 'jquery', 'aside', 'header', 'jquery_cookie', 'util'], function(ud, $, ud, ud, ud, util) {
+define(['bootstrap', 'jquery', 'aside', 'header', 'util'], 
+function(ud, $, ud, ud, util) {
 	
 	// 检测登陆状态
 	util.checkLoginStatus();

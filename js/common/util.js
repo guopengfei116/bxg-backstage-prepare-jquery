@@ -17,6 +17,5 @@ define(['jquery', 'jquery_cookie'], function($, ud) {
 				$('.overlay').hide();
 			});
 		}
-
 	}
 });
