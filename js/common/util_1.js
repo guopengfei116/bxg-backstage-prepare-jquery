@@ -1,6 +1,5 @@
 define(['jquery_cookie', 'jquery'], function(ud, $) {
 	
-	
 	return {
 		
 		/**

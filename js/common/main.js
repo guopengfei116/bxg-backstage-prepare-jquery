@@ -41,7 +41,8 @@ require.config({
 		jquery_cookie: 'lib/jquery-cookie/jquery.cookie',
 		
 		// 不依赖jquery的
-		nprogress: 'lib/nprogress/nprogress'
+		nprogress: 'lib/nprogress/nprogress',
+		template: 'lib/artTemplate/template'
 	},
 
 	// 配置普通模块的依赖或者输出

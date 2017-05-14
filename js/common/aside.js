@@ -28,6 +28,8 @@ define(['jquery_cookie', 'jquery'], function(ud, $) {
 	 * 4、获取页面中所有导航的a标签，删除active类名
 	 * 5、然后以对应的路径为href属性选择器，获取页面中对应的a标签，然后给他添加active类名即可
 	 * */
+	
+	// 对象左边的key对应网站的pathname，右边的值对应导航中a标签的href属性值
 	var pathnameToHref = {
 		'/': '/index.html',
 		'/html/home/settings.html': '/index.html',

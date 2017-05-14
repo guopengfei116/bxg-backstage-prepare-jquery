@@ -17,10 +17,8 @@ define(['jquery_form', 'jquery_cookie', 'jquery', 'nprogress', 'util'], function
 	
 	/*
 	 * 对于jquery的方法，
-	 * 操作DOM的都是实例方法，
-	 * 不操作DOM的都是静态方法。
-	 * 实例方法必须通过jq实例来调，
-	 * 静态方法直接通过$来调。
+	 * 操作DOM的都是实例方法，不操作DOM的都是静态方法。
+	 * 实例方法必须通过jq实例来调，静态方法直接通过$来调。
 	 * */
 	// 表单转ajax提交，成功后跳转到首页
 	$('.login-wrap form').ajaxForm({
