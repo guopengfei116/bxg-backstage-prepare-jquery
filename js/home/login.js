@@ -1,6 +1,15 @@
 // 凡是jquery插件，都没有返回值
 define(['jquery_form', 'jquery_cookie', 'jquery'], function(ud, ud, $) {
 	
+	/**
+	 * 检测登陆状态：
+	 * 1、使用cookie插件判断是否存在PHPSESSID这个cookie
+	 * 2、如果已存在证明已经登陆过了，不用再登陆，直接帮助用户跳转到首页
+	 * */
+	if($.cookie('PHPSESSID')) {
+		location.href = '/';
+	}
+	
 	/*
 	 * 对于jquery的方法，
 	 * 操作DOM的都是实例方法，
@@ -18,7 +27,8 @@ define(['jquery_form', 'jquery_cookie', 'jquery'], function(ud, ud, $) {
 			// 默认请求下存储的cookie在浏览器关闭后就会失效，为了延长有效期可以配置epires或者max-age
 			$.cookie('userInfo', JSON.stringify(data.result), { 
 				path: '/',
-				'max-age': 24 * 60 * 60
+				//expires: new Date(Date.now() + 1000 * 60 * 60)
+				'max-age': 1000000
 			});
 			location.href = '/';
 		},

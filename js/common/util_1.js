@@ -1,6 +1,7 @@
 define(['jquery_cookie', 'jquery'], function(ud, $) {
 	
-	var util = {
+	
+	return {
 		
 		/**
 		 * 检测登陆状态(登陆页除外)：
@@ -11,29 +12,21 @@ define(['jquery_cookie', 'jquery'], function(ud, $) {
 			if(!$.cookie('PHPSESSID')) {
 				location.href = '/html/home/login.html';
 			}
+			return this;
 		},
 		
 		fn2: function() {
 			console.log('util fn2');
+			return this;
 		},
 		
 		fn3: function() {
 			console.log('util fn3');
+			return this;
 		},
 		
 		add: function(a, b) {
 			return a + b;
 		}
-	}
-	
-	// 传入所有要执行的方法名，格式范例：{'checkLoginStatus': [], 'fn2': [], ...}
-	return function(methods) {
-		var returns = {};
-		for(var key in methods) {
-			// 使用同样方法名把每个方法的执行结果存储起来，最后统一返回
-			// 这面还使用了apply，把每个方法的数组参数拆开依次传递。
-			returns[key] = util[key].apply(util, methods[key]);
-		}
-		return returns;
 	}
 });
