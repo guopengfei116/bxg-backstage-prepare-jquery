@@ -33,11 +33,14 @@ require.config({
 		
 		// 第三方模块
 		jquery: 'lib/jquery/jquery.min',
-		bootstrap: 'lib/bootstrap/js/bootstrap.min',
 		
 		// jquery插件
+		bootstrap: 'lib/bootstrap/js/bootstrap.min',
 		jquery_form: 'lib/jquery-form/jquery.form',
-		jquery_cookie: 'lib/jquery-cookie/jquery.cookie'
+		jquery_cookie: 'lib/jquery-cookie/jquery.cookie',
+		
+		// 不依赖jquery的
+		nprogress: 'lib/nprogress/nprogress'
 	},
 
 	// 配置普通模块的依赖或者输出
@@ -48,6 +51,11 @@ require.config({
 			deps: ['jquery']
 		}
 	}
+});
+
+// 加载进度条库，然后start
+require(['nprogress'], function(nprogress) {
+	nprogress.start();
 });
 
 /**

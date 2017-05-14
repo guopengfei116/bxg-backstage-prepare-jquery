@@ -1,5 +1,5 @@
 // 凡是jquery插件，都没有返回值
-define(['jquery_form', 'jquery_cookie', 'jquery'], function(ud, ud, $) {
+define(['jquery_form', 'jquery_cookie', 'jquery', 'nprogress'], function(ud, ud, $, nprogress) {
 	
 	/**
 	 * 检测登陆状态：
@@ -37,4 +37,6 @@ define(['jquery_form', 'jquery_cookie', 'jquery'], function(ud, ud, $) {
 		}
 	})
 
+	// 销毁网站加载进度条
+	nprogress.done();
 });
