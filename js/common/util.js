@@ -22,6 +22,30 @@ define(['jquery_cookie', 'jquery'], function(ud, $) {
 			.on('ajaxStop', function() {
 				$('.overlay').hide();
 			});
+		},
+		
+		/**
+		 * 获取页面search值，
+		 * 如果没有传参，把所有search转为对象返回，
+		 * 如果传了则返回指定key的search值。
+		 * */
+		getSearch: function(searchKey) {
+			/**
+			 * 1、预定义一个对象，用来存储所有的search
+			 * 2、使用location.search获取查询字符串，去掉开头的?号
+			 * 3、然后进一步使用&分隔查询字符串，得到一个数组，数组中每一个search
+			 * 4、遍历数组，再使用=号分隔字符串，以第一个值为key，第二个值为val存储到对象中
+			 * 5、如果传参了，返回对象中指定key的search值，否则返回整个对象。
+			 * */
+			var searchObj = {}, temp;
+			var searchArr = location.search.slice(1).split('&');
+			for(var i = 0, len = searchArr.length; i < len; i++) {
+				temp = searchArr[i].split('=');
+				searchObj[temp[0]] = temp[1];
+			}
+			
+			// 如果没有传参，返回整个对象；传参返回对象中的指定值
+			return searchKey == null? searchObj: searchObj[searchKey];
 		}
 	}
 	
