@@ -10,4 +10,13 @@ define(['jquery_cookie', 'jquery'], function(ud, $) {
 	var userInfo = JSON.parse($.cookie('userInfo') || '{}');
 	userInfo.tc_avatar && $('.aside .avatar img').attr('src', userInfo.tc_avatar);
 	userInfo.tc_name && $('.aside h4').text(userInfo.tc_name);
+	
+	/**
+	 * 导航下拉列表：
+	 * 1、获取拥有下拉列表的a标签绑定点击事件
+	 * 2、事件触发时获取对应的ul标签让它显示变隐藏，隐藏变显示
+	 * */
+	$('.slide-down').on('click', function() {
+		$(this).next().slideToggle();
+	});
 });
