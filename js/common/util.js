@@ -13,16 +13,15 @@ define(['jquery_cookie', 'jquery'], function(ud, $) {
 			}
 		},
 		
-		fn2: function() {
-			console.log('util fn2');
-		},
-		
-		fn3: function() {
-			console.log('util fn3');
-		},
-		
-		add: function(a, b) {
-			return a + b;
+		// 请求loading
+		loading: function() {
+			$(document)
+			.on('ajaxStart', function() {
+				$('.overlay').show();
+			})
+			.on('ajaxStop', function() {
+				$('.overlay').hide();
+			});
 		}
 	}
 	

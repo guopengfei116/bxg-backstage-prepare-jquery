@@ -1,5 +1,5 @@
 // 凡是jquery插件，都没有返回值
-define(['jquery_form', 'jquery_cookie', 'jquery', 'nprogress'], function(ud, ud, $, nprogress) {
+define(['jquery_form', 'jquery_cookie', 'jquery', 'nprogress', 'util'], function(ud, ud, $, nprogress, util) {
 	
 	/**
 	 * 检测登陆状态：
@@ -9,6 +9,11 @@ define(['jquery_form', 'jquery_cookie', 'jquery', 'nprogress'], function(ud, ud,
 	if($.cookie('PHPSESSID')) {
 		location.href = '/';
 	}
+	
+	// util返回每一个方法的返回值，想用那个用那个，不用拉到
+	var returns = util({
+		'loading': []
+	});
 	
 	/*
 	 * 对于jquery的方法，
