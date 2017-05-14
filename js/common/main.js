@@ -34,8 +34,12 @@ require.config({
 		// 第三方模块
 		jquery: 'lib/jquery/jquery.min',
 		bootstrap: 'lib/bootstrap/js/bootstrap.min',
+		
+		// jquery插件
+		jquery_form: 'lib/jquery-form/jquery.form',
+		jquery_cookie: 'lib/jquery-cookie/jquery.cookie'
 	},
-	
+
 	// 配置普通模块的依赖或者输出
 	shim: {
 		
