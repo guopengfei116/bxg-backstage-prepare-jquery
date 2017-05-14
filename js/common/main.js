@@ -14,6 +14,7 @@ require.config({
 		login: 'js/home/login',
 		repass: 'js/home/repass',
 		settings: 'js/home/settings',
+		tcAdd: 'js/teacher/add',
 		tcEdit: 'js/teacher/edit',
 		tcList: 'js/teacher/list',
 		usProfile: 'js/user/profile',
@@ -67,9 +68,11 @@ require(['nprogress'], function(nprogress) {
 
 var obj = {
 	'/': 'index',
+	'/index.html': 'index',
 	'/html/home/login.html': 'login',
 	'/html/home/repass.html': 'repass',
 	'/html/home/settings.html': 'settings',
+	'/html/teacher/add.html': 'tcAdd',
 	'/html/teacher/edit.html': 'tcEdit',
 	'/html/teacher/list.html': 'tcList',
 	'/html/user/profile.html': 'usProfile',

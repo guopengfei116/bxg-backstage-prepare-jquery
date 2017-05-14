@@ -19,4 +19,25 @@ define(['jquery_cookie', 'jquery'], function(ud, $) {
 	$('.slide-down').on('click', function() {
 		$(this).next().slideToggle();
 	});
+	
+	/**
+	 * 导航焦点定位：
+	 * 1、对于页面路径与href不对应的项使用一个对象统一配置
+	 * 2、获取网站当前的路径
+	 * 3、以网站路径为key，去配置对象中找对应的href，找到即使用，未找到就把pathname当做href使用。
+	 * 4、获取页面中所有导航的a标签，删除active类名
+	 * 5、然后以对应的路径为href属性选择器，获取页面中对应的a标签，然后给他添加active类名即可
+	 * */
+	var pathnameToHref = {
+		'/': '/index.html',
+		'/html/home/settings.html': '/index.html',
+		'/html/home/repass.html': '/index.html',
+		'/html/user/profile.html': '/html/user/list.html',
+		'/html/teacher/add.html': '/html/teacher/list.html',
+		'/html/teacher/edit.html': '/html/teacher/list.html'
+	};
+	var pathname = location.pathname;
+	var href = pathnameToHref[pathname]? pathnameToHref[pathname]: pathname;
+	$('.aside a').removeClass('active')
+		.filter('[href="' + href + '"]').addClass('active');
 });
