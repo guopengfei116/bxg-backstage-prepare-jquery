@@ -87,6 +87,9 @@ define(['header', 'aside', 'util', 'nprogress', 'template', 'jquery_form', 'jque
 			swf: '/lib/uploadify/uploadify.swf',
 			uploader: '/v6/uploader/avatar',
 			fileObjName: 'tc_avatar',
+			buttonText: '',
+			fileTypeExts: '*.png; *.jpg',
+			height: $('.preview').height(),
 			onUploadSuccess: function(file, data) {
 				// 这里的data不像jquery那样给你自动解析好了，需要手动解析
 				try{
