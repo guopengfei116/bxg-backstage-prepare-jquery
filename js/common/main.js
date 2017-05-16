@@ -92,7 +92,7 @@ var obj = {
 	'/html/user/profile.html': 'usProfile',
 	'/html/user/list.html': 'usList',
 	'/html/course/add.html': 'csAdd',
-	'/html/course/list.html': 'usList',
+	'/html/course/list.html': 'csList',
 	'/html/course/category_add.html': 'cgAdd',
 	'/html/course/category_list.html': 'cgList',
 	'/html/course/course_add_step1.html': 'csAdd1',
