@@ -84,7 +84,7 @@ define(['header', 'aside', 'util', 'nprogress', 'template', 'jquery_form', 'jque
 	 * */
 	function initUploadify() {
 		$('#upfile').uploadify({
-			swf: '/lib/uploadify/uploadify.swf',  // flash选取文件的脚本
+			swf: '/lib/jquery-uploadify/uploadify.swf',  // flash选取文件的脚本
 			uploader: '/v6/uploader/avatar', // 接口
 			fileObjName: 'tc_avatar', // 相当于表单的name属性
 			buttonText: '',

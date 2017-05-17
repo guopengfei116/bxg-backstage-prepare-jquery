@@ -22,7 +22,7 @@ define(['header', 'aside', 'util', 'nprogress', 'jquery_uploadify', 'jquery', 't
 	function initUploadify() {
 		$('#uploadify').uploadify({
 			swf: '/lib/uploadify/uploadify.swf',  // flash选取文件的脚本
-			uploader: '/v6/uploader/cover', // 接口
+			uploader: '/v6/jquery-uploader/cover', // 接口
 			fileObjName: 'cs_cover_original', // 相当于表单的name属性
 			formData: {                      // 除了文件额外提交的数据
 				cs_id: cs_id

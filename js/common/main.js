@@ -36,13 +36,13 @@ require.config({
 		jquery: 'lib/jquery/jquery.min',
 		
 		// jquery插件
-		bootstrap: 'lib/bootstrap/js/bootstrap.min',
+		bootstrap: 'lib/jquery-bootstrap/js/bootstrap.min',
 		jquery_form: 'lib/jquery-form/jquery.form',
 		jquery_cookie: 'lib/jquery-cookie/jquery.cookie',
 		jquery_region: 'lib/jquery-region/jquery.region',
 		jquery_datepicker: 'lib/jquery-bootstrap-datepicker/js/bootstrap-datepicker.min',
 		jquery_datepicker_CN: 'lib/jquery-bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min',
-		jquery_uploadify: 'lib/uploadify/jquery.uploadify.min',
+		jquery_uploadify: 'lib/jquery-uploadify/jquery.uploadify.min',
 		
 		// 不依赖jquery的
 		nprogress: 'lib/nprogress/nprogress',
