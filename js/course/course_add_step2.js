@@ -37,6 +37,7 @@ define(['header', 'aside', 'util', 'nprogress', 'jquery_uploadify', 'jquery', 't
 					var data = JSON.parse(data);
 					$('.preview img').attr('src', data.result.path);
 					$('.thumb img').attr('src', data.result.path);
+					location.href = '/html/course/course_add_step3.html?cs_id=' + cs_id;
 				}catch(e){}
 			}
 		});
