@@ -9,8 +9,8 @@ define(['header', 'aside', 'util', 'nprogress', 'jquery_form', 'jquery'], functi
 	/**
 	 * 创建课程
 	 * */
-	$('form').ajaxForm(function() {
-		location.href = '/html/course/course_add_step1.html';
+	$('form').ajaxForm(function(data) {
+		location.href = '/html/course/course_add_step1.html?cs_id=' + data.result.cs_id;
 	});
 	
 	// 销毁网站加载进度条
