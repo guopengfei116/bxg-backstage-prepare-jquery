@@ -66,12 +66,51 @@ define(['header', 'aside', 'util', 'nprogress', 'bootstrap', 'jquery_form', 'jqu
  				ct_is_free: $('#checkbox-is-free').prop('checked')? 1: 0
  			},
  			success: function(data) {
+ 				
+ 				/**
+ 				 * 模态框提交：
+ 				 * 1、隐藏模态框
+ 				 * 2、获取按钮上的data-ct-id自定义属性，有值认为是编辑，否则是添加。
+ 				 * 
+ 				 * 编辑：
+ 				 * 1、遍历缓存的课时列表,在result.lessons里面
+ 				 * 2、然后依次比较每个课时的ct-id与编辑的ct-id
+ 				 * 3、如果相等则修改这个对象中的ct_name和ct_video_duration属性值
+ 				 * 4、最后课时列表整体重新渲染
+ 				 * 
+ 				 * 添加：
+ 				 * 1、给result.lessons，push一个新对象
+ 				 * 2、新对象有三个值
+ 				 * 2.1、ct_name 标题
+ 				 * 2.2、ct_video_duration 时长
+ 				 * 2.3、ct_id 新创建课时的ID（这个id从后端的返回结果中拿）
+ 				 * 3、最后课时列表整体重新渲染
+ 				 * */
+ 				
  				// 隐藏模态框
  				$('#chapterModal').modal('hide');
- 				// 重新获取课时列表整体渲染
- 				$.get('/v6/course/lesson', { cs_id: cs_id }, function(data){
-					$('.steps').html(template('steps3-tpl',  data.result));
-				});
+ 				
+ 				// 编辑课时，修改课时列表中的内容即可
+ 				if(ct_id) {
+ 					
+ 					// 更新缓存的数据
+ 					for(var i = 0, len = result.lessons.length; i < len; i++) {
+ 						if(result.lessons[i].ct_id === ct_id) {
+ 							result.lessons[i].ct_name = $('[name="ct_name"]').val();
+ 							result.lessons[i].ct_video_duration = $('[name="ct_minutes"]').val() + ':' + $('[name="ct_seconds"]').val();
+ 						}
+ 					}
+ 				}
+ 				// 添加课时，额外添加一条课时列表
+ 				else {
+					result.lessons.push({
+						ct_id: data.result,
+						ct_name: $('[name="ct_name"]').val(),
+						ct_video_duration: $('[name="ct_minutes"]').val() + ':' + $('[name="ct_seconds"]').val()
+					});
+ 				}
+ 				
+ 				$('.steps').html(template('steps3-tpl', result));
  			}
  		});
  	});

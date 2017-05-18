@@ -10,11 +10,9 @@ define(['header', 'aside', 'util', 'nprogress', 'bootstrap', 'jquery_form', 'jqu
 	/**
 	 * 渲染课时列表
 	 * */
-	var result = null;  // 把请求到的所有数据缓存
 	var cs_id = returns.getSearch;
 	$.get('/v6/course/lesson', { cs_id: cs_id }, function(data){
-		result = data.result;
-		$('.steps').html(template('steps3-tpl', result));
+		$('.steps').html(template('steps3-tpl', data.result));
 	});
 	
 	/*
@@ -66,12 +64,54 @@ define(['header', 'aside', 'util', 'nprogress', 'bootstrap', 'jquery_form', 'jqu
  				ct_is_free: $('#checkbox-is-free').prop('checked')? 1: 0
  			},
  			success: function(data) {
+ 				// location.reload();
+ 				
+ 				/**
+ 				 * 模态框提交：
+ 				 * 1、隐藏模态框
+ 				 * 2、获取按钮上的data-ct-id自定义属性，有值认为是编辑，否则是添加。
+ 				 * 
+ 				 * 编辑：
+ 				 * 1、通过ct_id和属性选择器找到对应的编辑按钮
+ 				 * 2、通过这个按钮找到他的父li
+ 				 * 3、父li找到要修改的标题和时长元素，修改他俩的值即可
+ 				 * 
+ 				 * 添加：
+ 				 * 1、添加成功后手动创建一条课时列表的htmlDOM结构
+ 				 * 2、修改结构中四个值：
+ 				 * 2.1、编号
+ 				 * 2.2、标题
+ 				 * 2.3、时长
+ 				 * 2.4、编辑按钮上的data-ct-id自定义属性（这个id从后端的返回结果中拿）
+ 				 * */
+ 				
  				// 隐藏模态框
  				$('#chapterModal').modal('hide');
- 				// 重新获取课时列表整体渲染
- 				$.get('/v6/course/lesson', { cs_id: cs_id }, function(data){
-					$('.steps').html(template('steps3-tpl',  data.result));
-				});
+ 				
+ 				// 编辑课时，修改课时列表中的内容即可
+ 				if(ct_id) {
+ 					// 找到对应的父li
+ 					var li = $('a[data-ct-id="' + ct_id + '"]').parents('.lessons li');
+ 					// 通过父找到里面标题和时长的元素，重设值
+ 					li.find('.name').text($('[name="ct_name"]').val());
+ 					li.find('.duration').text($('[name="ct_minutes"]').val() + ':' + $('[name="ct_seconds"]').val());
+ 				}
+ 				// 添加课时，额外添加一条课时列表
+ 				else {
+ 					var html = 
+	 					'<li>' +
+	                        '<i class="fa fa-file-video-o"></i> ' +
+	                        '<span class="order">课时：' + ($('.lessons .list-unstyled li').length + 1) + '</span>' +
+	                        '<span class="name">' + $('[name="ct_name"]').val() + '</span>' +
+	                        '<span class="duration">' + $('[name="ct_minutes"]').val() + ':' + $('[name="ct_seconds"]').val() + '</span>' +
+	                        '<div class="action pull-right">' +
+	                            '<a href="javascript:;" data-ct-id="' + data.result + '" class="btn btn-info btn-xs btn-ct-edit" data-toggle="modal" data-target="#chapterModal">编辑</a>' +
+	                            '<a href="javascript:;" class="btn btn-info btn-xs">预览</a>' +
+	                            '<a href="javascript:;" class="btn btn-danger btn-xs">删除</a>' +
+	                        '</div>' +
+	                    '</li>';
+                    $('.lessons .list-unstyled').append(html);
+ 				}
  			}
  		});
  	});
