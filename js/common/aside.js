@@ -41,5 +41,7 @@ define(['jquery_cookie', 'jquery'], function(ud, $) {
 	var pathname = location.pathname;
 	var href = pathnameToHref[pathname]? pathnameToHref[pathname]: pathname;
 	$('.aside a').removeClass('active')
-		.filter('[href="' + href + '"]').addClass('active');
+		.filter('[href="' + href + '"]').addClass('active')
+		// 被选中的元素所有的父元素显示，这个显示截止到navs为止
+		.parentsUntil('.navs').slideDown();
 });
