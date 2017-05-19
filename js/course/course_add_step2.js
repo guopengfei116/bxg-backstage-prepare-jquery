@@ -55,6 +55,7 @@ define(['header', 'aside', 'util', 'nprogress', 'jquery_uploadify', 'jquery_Jcro
 			setSelect: [ 0, 0, 300, 150 ],     // 设置默认的选区
 			bgColor: 'skyblue',
 			minSize: [300, 150],               // 限制选取图片的最小宽高
+			boxWidth: $('.preview').width()    // 限制裁剪区域的最大宽高
 //			edge: {
 //				n: 10,
 //				s: -20,
@@ -66,6 +67,11 @@ define(['header', 'aside', 'util', 'nprogress', 'jquery_uploadify', 'jquery_Jcro
 			// 该插件还提供了一个方法用来获取实例$('.preview img').Jcrop('api')
 			// 不过这个方法步一定能够得到实例(因为你调用的时候插件可能还没初始化好)
 			J = this;
+			
+			// 创建裁剪预览框
+			J.initComponent('Thumbnailer', { width: $('.thumb').width(), height: $('.thumb').height() });
+			// 把预览框添加到指定元素中
+			$('.thumb').empty().append($('.jcrop-thumb'));
 		});
 	});
 	
