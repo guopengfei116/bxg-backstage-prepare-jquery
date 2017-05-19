@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>学IT - 后台管理系统</title>
     <!-- 样式 -->
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/html/common/style.html')?>
 	<link rel="stylesheet" href="/lib/jquery-bootstrap-datepicker/css/bootstrap-datepicker3.min.css" />
+	<link rel="stylesheet" href="/lib/ckeditor/contents.css">
+	<!-- 加样式权重，如果有样式冲突的话，一般通过添加选择器层级添加权重解决 -->
+	<?php include($_SERVER['DOCUMENT_ROOT'] . '/html/common/style.html')?>
 </head>
 <body>
     
@@ -105,7 +107,7 @@
                 <div class="form-group">
                     <label for="" class="col-xs-3 control-label">个人介绍</label>
                     <div class="col-xs-5 ckeditor">
-                        <textarea name="tc_introduce" rows="15" class="form-control input-sm">{{ tc_introduce }}</textarea>
+                        <textarea id="ckeditor" name="tc_introduce" rows="15" class="form-control input-sm">{{ tc_introduce }}</textarea>
                     </div>
                 </div>
                 <div class="form-group">

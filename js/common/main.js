@@ -47,7 +47,8 @@ require.config({
 		
 		// 不依赖jquery的
 		nprogress: 'lib/nprogress/nprogress',
-		template: 'lib/artTemplate/template'
+		template: 'lib/artTemplate/template',
+		ckeditor: 'lib/ckeditor/ckeditor'
 	},
 
 	// 配置普通模块的依赖或者输出
@@ -69,6 +70,11 @@ require.config({
 		
 		jquery_Jcrop: {
 			deps: ['jquery']
+		},
+		
+		// 非AMD模块，如果想按照正常的方式引入，必须配置exports属性值为该模块暴露的全局变量
+		ckeditor: {
+			exports: 'CKEDITOR'
 		}
 	}
 });

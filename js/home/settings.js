@@ -1,10 +1,13 @@
-define(['header', 'aside', 'util', 'nprogress', 'template', 'jquery_form', 'jquery_region', 'jquery_datepicker', 'jquery_datepicker_CN', 'jquery_uploadify', 'jquery'], function(ud, ud, util, nprogress, template, ud, ud, ud, ud, ud, $) {
+define(['header', 'aside', 'util', 'nprogress', 'template', 'jquery_form', 'jquery_region', 'jquery_datepicker', 'jquery_datepicker_CN', 'jquery_uploadify', 'jquery', 'ckeditor'], function(ud, ud, util, nprogress, template, ud, ud, ud, ud, ud, $, ckeditor) {
 
 	// util返回每一个方法的返回值，想用那个用那个，不用拉到
 	var returns = util({
 		'checkLoginStatus': [],
 		'loading': []
 	});
+	
+	// 该变量用来存储富文本编辑器实例供全局使用
+	var edit = null;
 	
 	/**
 	 * 个人中心详细信息回显：
@@ -17,6 +20,7 @@ define(['header', 'aside', 'util', 'nprogress', 'template', 'jquery_form', 'jque
 		initPCD();
 		initDatepicker();
 		initUploadify();
+		initCkeditor();
 	});
 	
 	/**
@@ -31,6 +35,9 @@ define(['header', 'aside', 'util', 'nprogress', 'template', 'jquery_form', 'jque
 		});*/
 		
 		$('.teacher-profile form').on('submit', function(e) {
+			
+			// 在提交数据之前，把富文本框的内容更新到textarea中以提交
+			edit.updateElement();
 			
 			// 阻止表单默认的提交行为
 			e.preventDefault();
@@ -98,6 +105,26 @@ define(['header', 'aside', 'util', 'nprogress', 'template', 'jquery_form', 'jque
 					console.log(data);
 				}
 			}
+		});
+	}
+	
+	/**
+	 * 初始化富文本编辑器
+	 * */
+	function initCkeditor() {
+		// 该富文本编辑器提供一个replace方法，把textarea替换。
+		// 第二个参数为一个对象，可以进行配置。
+		// 对象有一个toolbarGroups配置 ，用来指定编辑器的功能列表。
+		edit = ckeditor.replace('ckeditor', {
+			toolbarGroups: [
+		        { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+		        { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+		        { name: 'links' },
+		        { name: 'insert' },
+		        { name: 'forms' },
+		        { name: 'tools' },
+		        { name: 'document',    groups: [ 'mode', 'document', 'doctools' ] }
+		    ]
 		});
 	}
 	
